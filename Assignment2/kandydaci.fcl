@@ -3,7 +3,7 @@ FUNCTION_BLOCK kandydat
 VAR_INPUT				
 	wiek : REAL;
 	iq : REAL;
-    doswiadczenie: REAL;
+	doswiadczenie: REAL;
 END_VAR
  
 VAR_OUTPUT				
@@ -32,7 +32,7 @@ DEFUZZIFY ocena
 	TERM slaby := (0,0) (5,1) (10,1) (15,0);
 	TERM przecietny := (10,0) (20,1) (30,1) (40,0);
 	TERM dobry := (30,0) (40,1) (60,1) (70,0);
-    TERM bardzo_dobry := (60,0) (70,1) (100,1);
+	TERM bardzo_dobry := (60,0) (70,1) (100,1);
 	METHOD : COG;		
 	DEFAULT := 0;		
 END_DEFUZZIFY
@@ -46,9 +46,9 @@ RULEBLOCK No1
 	RULE 1 : IF wiek IS mlody OR iq IS male THEN ocena IS slaby;
 	RULE 2 : IF wiek IS mlody AND iq IS wysokie THEN ocena IS dobry;
 	RULE 3 : IF wiek IS sredni OR wiek IS stary AND iq IS wysokie THEN ocena IS bardzo_dobry;
-    RULE 4 : IF wiek IS stary AND doswiadczenie IS male THEN ocena IS slaby;
-    RULE 5 : IF wiek IS sredni AND doswiadczenie IS srednie THEN ocena IS dobry;
-    RULE 6 : IF wiek IS stary AND doswiadczenie IS male AND iq is wysokie THEN ocena IS dobry;
+	RULE 4 : IF wiek IS stary AND doswiadczenie IS male THEN ocena IS slaby;
+	RULE 5 : IF wiek IS sredni AND doswiadczenie IS srednie THEN ocena IS dobry;
+	RULE 6 : IF wiek IS stary AND doswiadczenie IS male AND iq is wysokie THEN ocena IS dobry;
 	RULE 7 : IF wiek IS stary OR wiek IS sredni AND iq IS srednie AND doswiadczenie IS male THEN ocena IS przecietny;
 	RULE 8 : IF wiek IS sredni AND doswiadczenie IS duze AND iq IS male THEN ocena IS dobry;
 
