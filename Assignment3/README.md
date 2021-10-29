@@ -1,0 +1,1 @@
+Zaimplementuj (w dowolnym języku programowania) funkcje liczące przekrój, sumę i dopełnienie zbiorów rozmytych na elementach podanych jako lista.
