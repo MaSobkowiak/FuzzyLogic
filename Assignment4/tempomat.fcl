@@ -1,0 +1,40 @@
+FUNCTION_BLOCK tempomat
+
+VAR_INPUT
+	dystans : REAL;
+	szybkosc : REAL;
+END_VAR
+
+VAR_OUTPUT
+	zmiana : REAL;
+END_VAR
+
+FUZZIFY dystans
+	TERM krotki := (0,1) (30, 1) (45,0) (600, 0); 
+	TERM dlugi := (0,0) (30,0) (45,1) (600, 1);
+END_FUZZIFY
+
+FUZZIFY szybkosc
+	TERM mala := (0, 1) (15,1) (150,0) ;
+	TERM duza := (0, 0) (15,0) (150, 1);
+END_FUZZIFY
+
+DEFUZZIFY zmiana
+	TERM redukuj := (-25,1) (-5,1) (0,0);
+	TERM utrzymuj := (-5,0) (0,1) (5,0);
+	TERM zwiekszaj := (0,0) (5,1) (25,1);
+	METHOD : COG;
+	DEFAULT := 0;		
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+
+	RULE 1 : IF dystans IS krotki AND szybkosc is duza THEN zmiana IS redukuj;
+	RULE 2 : IF dystans IS dlugi AND szybkosc is mala THEN zmiana IS zwiekszaj;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
